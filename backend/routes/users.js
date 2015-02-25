@@ -19,7 +19,6 @@ router.get('/users', function(req, res) {
 
 router.post('/users', function(req, res) {
   var callback = function(err, users) {
-
     if (users.length < 1) {
       req.body.password = passwordHash.generate(req.body.password);
       var user = new User(req.body);
