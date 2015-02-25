@@ -1,4 +1,5 @@
 var express = require('express');
+var passwordHash = require('password-hash');
 var router = express.Router();
 var User = require('../models/user');
 
@@ -15,6 +16,9 @@ router.get('/users', function(req, res) {
 })
 
 router.post('/users', function(req, res) {
+  req.body.password = passwordHash.generate(req.body.password);
+  console.log(req.body.password);
+
   var user = new User(req.body);
 
   user.save(function(err) {
@@ -25,6 +29,10 @@ router.post('/users', function(req, res) {
 })
 
 router.put('/users/:id', function(req, res) {
+  if (req.body.password) {
+    req.body.password = passwordHash.generate(req.body.password);
+  }
+
   User.findOne({ _id: req.params.id }, function(err, user) {
     if (err) { return res.send(err); }
 
