@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var express = require('express');
 var passwordHash = require('password-hash');
 var router = express.Router();
@@ -8,32 +9,39 @@ router.get('/', function(req, res) {
 })
 
 router.get('/users', function(req, res) {
-  User.find(function(err, users) {
+  var callback = function(err, users) {
     if (err) { return res.send(err); }
-
     res.json(users);
-  });
-})
+  }
+
+  User.find().select('-password').exec(callback);
+});
 
 router.post('/users', function(req, res) {
-  req.body.password = passwordHash.generate(req.body.password);
-  console.log(req.body.password);
+  var callback = function(err, users) {
 
-  var user = new User(req.body);
+    if (users.length < 1) {
+      req.body.password = passwordHash.generate(req.body.password);
+      var user = new User(req.body);
+      user.save(function(err) {
+        if (err) { return res.send(err); }
 
-  user.save(function(err) {
-    if (err) { return res.send(err); }
+        res.send({ message: 'User added' });
+      });
+    } else {
+      res.send({ message: 'Username alredy exists, try a different one' });
+    }
+  }
 
-    res.send({ message: 'User added' });
-  });
-})
+  User.find().where({'username': req.body.username}).exec(callback);
+});
 
 router.put('/users/:id', function(req, res) {
   if (req.body.password) {
     req.body.password = passwordHash.generate(req.body.password);
   }
 
-  User.findOne({ _id: req.params.id }, function(err, user) {
+  User.findById(req.params.id, function(err, user) {
     if (err) { return res.send(err); }
 
     for (prop in req.body) {
@@ -46,14 +54,14 @@ router.put('/users/:id', function(req, res) {
       res.send({ message: 'User modified' });
     });
   });
-})
+});
 
 router.get('/users/:id', function(req, res) {
-  User.findOne({ _id: req.params.id }, function(err, user) {
+  User.findById(req.params.id , '-password', function(err, user) {
     if (err) { return res.send(err); }
 
-    res.json(user)
+    res.json(user);
   });
-})
+});
 
 module.exports = router;
