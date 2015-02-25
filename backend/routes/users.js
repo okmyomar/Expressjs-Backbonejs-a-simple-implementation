@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 
 router.get('/users', function(req, res) {
   var callback = function(err, users) {
-    if (err) { return res.send(err); }
+    if (err) return res.send(err);
     res.json(users);
   }
 
@@ -24,7 +24,7 @@ router.post('/users', function(req, res) {
       req.body.password = passwordHash.generate(req.body.password);
       var user = new User(req.body);
       user.save(function(err) {
-        if (err) { return res.send(err); }
+        if (err) return res.send(err);
 
         res.send({ message: 'User added' });
       });
@@ -42,14 +42,14 @@ router.put('/users/:id', function(req, res) {
   }
 
   User.findById(req.params.id, function(err, user) {
-    if (err) { return res.send(err); }
+    if (err) return res.send(err);
 
     for (prop in req.body) {
       user[prop] = req.body[prop];
     }
 
     user.save(function(err) {
-      if (err) { return res.send(err); }
+      if (err) return res.send(err);
 
       res.send({ message: 'User modified' });
     });
@@ -58,7 +58,7 @@ router.put('/users/:id', function(req, res) {
 
 router.get('/users/:id', function(req, res) {
   User.findById(req.params.id , '-password', function(err, user) {
-    if (err) { return res.send(err); }
+    if (err) return res.send(err);
 
     res.json(user);
   });
