@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var mongoose = require('mongoose');
+var passwordHash = require('password-hash');
 
 var schema = new mongoose.Schema({
   username: String,
@@ -19,6 +20,12 @@ schema.methods.addRoles = function(role1, role2) {
 
   if (!_.isArray(roles)) roles = [roles];
   this.roles = _.union(this.roles, roles)
+}
+
+// Set checkPassword  function
+schema.methods.checkPassword = function(password) {
+  var isCorrect = passwordHash.veryfy(password, this.password);
+  return isCorrect;
 }
 
 var User = mongoose.model('User', schema);
