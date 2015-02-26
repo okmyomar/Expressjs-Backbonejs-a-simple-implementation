@@ -17,30 +17,29 @@ describe('User tests', function() {
     usr.get('roles').should.contain('d');
   });
 
-  it('should save a User', function() {
-    var newUser = new User({"username":"jkjjkj", "password":"1234567", "roles":["developer", "designer"]});
+  it('should save a created', function(done) {
+    var newUser = new User({
+      username: "userExample",
+      password:"1234567",
+      roles:["developer", "designer"]
+    });
 
     newUser.save(function(err) {
       if (err) console.log(err);
       console.log({ message: 'User added' });
     });
-
-    // return newUser.save(function(err) {
-    //   console.log(err);
-    //   done();
-    // });
   });
 
   it('plaintext password should not be saved', function() {
     return user.get('password').should.not.equal('supersecRet');
   });
 
-  // it('should list users', function() {
-  //   var users = new collections.Users();
-  //   return users
-  //     .fetch()
-  //     .then(function() {
-  //       users.length.should.equal(1);
-  //     });
-  // });
+  it('should list users', function() {
+    var users = new collections.Users();
+    return users
+      .fetch()
+      .then(function() {
+        users.length.should.equal(1);
+      });
+  });
 });
