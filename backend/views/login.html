@@ -65,7 +65,7 @@
                     url: '/login',
                     data: data
                 }).done(function(data) {
-                    window.location = '/users';
+                    window.location = '/index';
                 }).error(function(err) {
                     $('#loginForm #messages').text(err.responseText);
                 });

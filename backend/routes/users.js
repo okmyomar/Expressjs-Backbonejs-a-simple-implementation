@@ -4,21 +4,18 @@ var passwordHash = require('password-hash');
 var router = express.Router();
 var User = require('../models/user');
 
-router.get('/', function(req, res) {
-  res.render('login');
-})
 
-router.get('/users', function(req, res) {
+router.get('/', function(req, res) {
   var callback = function(err, users) {
     if (err) return res.send(err);
-    res.location('/users');
+    //res.location('/users');
     res.json(users);
   }
 
   User.find().select('-password').exec(callback);
 });
 
-router.post('/users', function(req, res) {
+router.post('/', function(req, res) {
   var callback = function(err, users) {
     if (users.length < 1) {
       req.body.password = passwordHash.generate(req.body.password);
@@ -36,7 +33,7 @@ router.post('/users', function(req, res) {
   User.find().where({'username': req.body.username}).exec(callback);
 });
 
-router.put('/users/:id', function(req, res) {
+router.put('/:id', function(req, res) {
   if (req.body.password) {
     req.body.password = passwordHash.generate(req.body.password);
   }
@@ -56,7 +53,7 @@ router.put('/users/:id', function(req, res) {
   });
 });
 
-router.get('/users/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   User.findById(req.params.id , '-password', function(err, user) {
     if (err) return res.send(err);
 
@@ -64,21 +61,5 @@ router.get('/users/:id', function(req, res) {
   });
 });
 
-// login function
-router.post('/login', function(req, res) {
-  User.findOne({ username: req.body.username }, function(err, user) {
-    console.log(req.body);
-    if (err) return res.send(err);
-
-    if (user) {
-      var isPasswordCorrect = user.checkPassword(req.body.password);
-      if (isPasswordCorrect) res.status(200).send('Correct data!')
-      res.status(400).send('Incorrect password');
-    }
-
-    res.status(404).send('User not found');
-  })
-
-});
 
 module.exports = router;
