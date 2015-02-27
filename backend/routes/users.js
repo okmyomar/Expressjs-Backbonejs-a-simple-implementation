@@ -11,6 +11,7 @@ router.get('/', function(req, res) {
 router.get('/users', function(req, res) {
   var callback = function(err, users) {
     if (err) return res.send(err);
+    res.location('/users');
     res.json(users);
   }
 
@@ -66,15 +67,16 @@ router.get('/users/:id', function(req, res) {
 // login function
 router.post('/login', function(req, res) {
   User.findOne({ username: req.body.username }, function(err, user) {
+    console.log(req.body);
     if (err) return res.send(err);
 
     if (user) {
       var isPasswordCorrect = user.checkPassword(req.body.password);
-      if (isPasswordCorrect) return true
-      return false;
+      if (isPasswordCorrect) res.status(200).send('Correct data!')
+      res.status(400).send('Incorrect password');
     }
 
-    res.send({ message: 'User not found' })
+    res.status(404).send('User not found');
   })
 
 });

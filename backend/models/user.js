@@ -24,7 +24,7 @@ schema.methods.addRoles = function(role1, role2) {
 
 // Set checkPassword  function
 schema.methods.checkPassword = function(password) {
-  var isCorrect = passwordHash.veryfy(password, this.password);
+  var isCorrect = passwordHash.verify(password, this.password);
   return isCorrect;
 }
 

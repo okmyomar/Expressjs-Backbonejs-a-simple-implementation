@@ -18,6 +18,70 @@
                 $('#signUpForm').addClass('hidden');
                 $('#loginForm').removeClass('hidden');
             });
+
+            $('#addRoleBtn').on('click', function() {
+                var input = $('<input>');
+                var li = $('<li>').append(input);
+
+                $('ul').append(li);
+            });
+
+            $('#btnSignUp').on('click', function() {
+                var data;
+                var roles = [];
+                var roleList = $('ul#rele-list input');
+                $.each(roleList, function(i, role) {
+                    val = $(role).val();
+                    if (val) roles.push(val);
+                });
+
+                var data = {
+                    username: $('#signUpForm #userName').val(),
+                    password: $('#signUpForm #password').val(),
+                    roles: roles
+                }
+
+                debugger;
+                $.ajax({
+                    type: 'POST',
+                    url: '/users',
+                    data: data
+                }).done(function(data) {
+                    console.log(data);
+                }).fail(function(err) {
+                    console.log(err);
+                });
+            });
+
+            /*Server comunication*/
+            $('#loginBtn').on('click', function() {
+                var data = {
+                    username: $('#loginForm #userName').val(),
+                    password: $('#loginForm #password').val()
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: data
+                }).done(function(data) {
+                    window.location = '/users';
+                }).error(function(err) {
+                    $('#loginForm #messages').text(err.responseText);
+                });
+
+                // $.ajax({
+                //     type: 'POST',
+                //     url: '/login',
+
+                //     data: data
+                // }).done(function(data) {
+                //     console.log(data);
+                // }).fail(function(err) {
+                //     console.log(err);
+                // });
+            });
+
         });
     </script>
 
@@ -26,19 +90,13 @@
     <style>
         .container {
             padding: 25px;
-            position: fixed;
         }
 
         .form-login {
             background-color: #EDEDED;
-            padding-top: 10px;
-            padding-bottom: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 10px 20px 10px;
             border-radius: 5px;
-            border-color:#d2d2d2;
             border-width: 5px;
-            box-shadow:0 1px 0 #cfcfcf;
         }
 
         h4 {
@@ -50,6 +108,7 @@
 
         .form-control { border-radius: 5px; }
         .wrapper { text-align: center; }
+        .error { color: red;}
     </style>
 </head>
 <body>
@@ -63,10 +122,11 @@
             <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username" />
             </br>
             <input type="password" id="password" class="form-control input-sm chat-input" placeholder="password" />
+            <span id="messages" class="error"></span>
             </br>
             <div class="wrapper">
             <span class="group-btn">
-                <a href="#" id="btnLogin" class="btn btn-primary btn-md">Login</i></a>
+                <a href="#" id="loginBtn" class="btn btn-primary btn-md">Login</i></a>
             </span>
             </div>
             </div>
@@ -86,9 +146,15 @@
             </br>
             <input type="password" id="password" class="form-control input-sm chat-input" placeholder="password" />
             </br>
+                <div>
+                    Add the necessary roles<button id="addRoleBtn" type="button" class="btn btn-sm btn-primary"><i>+</i></button>
+                    <ul id="rele-list" class="list-unstyled">
+                        <li><input type="text"></li>
+                    </ul>
+                </div>
             <div class="wrapper">
             <span class="group-btn">
-                <a href="#" id="btnSignUp" class="btn btn-primary btn-md">Accept</i></a>
+                <button type="button" id="btnSignUp" class="btn btn-primary btn-md">Accept</i></button>
             </span>
             </div>
             </div>
