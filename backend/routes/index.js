@@ -7,7 +7,6 @@ router.get('/', function(req, res) {
 })
 
 router.get('/index', function(req, res) {
-  console.log('fdsfdas');
   res.render('main');
 })
 

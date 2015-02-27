@@ -15,19 +15,29 @@
     <!-- External styles -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
+    <!-- Backbone elements -->
+    <script src="/userModel.js"></script>
+    <script src="/userCollection.js"></script>
+    <script src="/userViews.js"></script>
+
     <!-- Precompiled templates -->
     <script src="/user.hbs.js"></script>
     <script src="/userTable.hbs.js"></script>
+    <script src="/userEditor.hbs.js"></script>
 </head>
 <body>
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
         <h2>The users room!</h2>
+        <ul class="list-unstyled">
+            <li>Click on a line to add roles</li>
+            <li>Use 'back' button of your browser to get back</li>
+        </ul>
         <div id="main-container"></div>
     </div>
 </div>
-<!-- App starter code -->
 
+<!-- App code -->
 <script src="/app.js"></script>
 </body>
 </html>

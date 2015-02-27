@@ -8,7 +8,6 @@ var User = require('../models/user');
 router.get('/', function(req, res) {
   var callback = function(err, users) {
     if (err) return res.send(err);
-    //res.location('/users');
     res.json(users);
   }
 
@@ -41,9 +40,15 @@ router.put('/:id', function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (err) return res.send(err);
 
+    //Using add roles
+    user.addRoles(req.body.roles);
+    delete(req.body.roles);
+
     for (prop in req.body) {
       user[prop] = req.body[prop];
     }
+
+    roles = user['roles'];
 
     user.save(function(err) {
       if (err) return res.send(err);

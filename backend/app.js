@@ -15,6 +15,9 @@ app.engine('html', require('consolidate').handlebars);
 app.set('view engine', 'html')
 
 app.use(express.static('../frontend/js'));
+app.use(express.static('../frontend/models'));
+app.use(express.static('../frontend/collections'));
+app.use(express.static('../frontend/views'));
 app.use(express.static('../frontend/templates'));
 app.use(express.static('views'));
 
