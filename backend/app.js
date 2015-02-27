@@ -15,10 +15,11 @@ app.engine('html', require('consolidate').handlebars);
 app.set('view engine', 'html')
 
 app.use(express.static('../frontend/js'));
-app.use(serveStatic('views'));
+app.use(express.static('../frontend/templates'));
+app.use(express.static('views'));
 
-app.use('/users', users);
 app.use('/', routes);
+app.use('/users', users);
 
 app.listen(config.listen_port);
 console.log('listening in port:' + config.listen_port);

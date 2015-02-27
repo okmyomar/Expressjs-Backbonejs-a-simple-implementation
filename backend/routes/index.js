@@ -3,19 +3,17 @@ var User = require('../models/user');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-  console.log('///')
   res.render('login');
 })
 
 router.get('/index', function(req, res) {
-  console.log('/indexx')
-  res.render('index');
+  console.log('fdsfdas');
+  res.render('main');
 })
 
 // login function
 router.post('/login', function(req, res) {
   User.findOne({ username: req.body.username }, function(err, user) {
-    console.log(req.body);
     if (err) return res.send(err);
 
     if (user) {

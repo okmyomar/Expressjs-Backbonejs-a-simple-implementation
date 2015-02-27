@@ -41,15 +41,14 @@
                     roles: roles
                 }
 
-                debugger;
                 $.ajax({
                     type: 'POST',
                     url: '/users',
                     data: data
                 }).done(function(data) {
-                    console.log(data);
+                    window.location = '/index'
                 }).fail(function(err) {
-                    console.log(err);
+                    $('#signUpForm #messages').text(err.responseText);
                 });
             });
 
@@ -65,23 +64,12 @@
                     url: '/login',
                     data: data
                 }).done(function(data) {
-                    window.location = '/index';
+                    debugger
+                    window.location = '/index'
                 }).error(function(err) {
                     $('#loginForm #messages').text(err.responseText);
                 });
-
-                // $.ajax({
-                //     type: 'POST',
-                //     url: '/login',
-
-                //     data: data
-                // }).done(function(data) {
-                //     console.log(data);
-                // }).fail(function(err) {
-                //     console.log(err);
-                // });
             });
-
         });
     </script>
 
@@ -113,7 +101,6 @@
 </head>
 <body>
 <div class="container">
-
     <!-- Sign in form -->
     <div id="loginForm" class="row">
         <div class="col-md-offset-5 col-md-3">
@@ -146,12 +133,13 @@
             </br>
             <input type="password" id="password" class="form-control input-sm chat-input" placeholder="password" />
             </br>
-                <div>
-                    Add the necessary roles<button id="addRoleBtn" type="button" class="btn btn-sm btn-primary"><i>+</i></button>
-                    <ul id="rele-list" class="list-unstyled">
-                        <li><input type="text"></li>
-                    </ul>
-                </div>
+            <div>
+                Add the necessary roles<button id="addRoleBtn" type="button" class="btn btn-sm btn-primary"><i>+</i></button>
+                <ul id="rele-list" class="list-unstyled">
+                    <li><input type="text"></li>
+                </ul>
+            </div>
+            <span id="messages" class="error"></span>
             <div class="wrapper">
             <span class="group-btn">
                 <button type="button" id="btnSignUp" class="btn btn-primary btn-md">Accept</i></button>

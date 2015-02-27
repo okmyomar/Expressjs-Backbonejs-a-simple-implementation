@@ -26,7 +26,7 @@ router.post('/', function(req, res) {
         res.send({ message: 'User added' });
       });
     } else {
-      res.send({ message: 'Username alredy exists, try a different one' });
+      res.status(409).send('Username alredy exists, try a different one');
     }
   }
 
@@ -60,6 +60,5 @@ router.get('/:id', function(req, res) {
     res.json(user);
   });
 });
-
 
 module.exports = router;
