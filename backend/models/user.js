@@ -5,7 +5,10 @@ var passwordHash = require('password-hash');
 var schema = new mongoose.Schema({
   username: String,
   password: String,
-  roles: { type: [], default: [] }
+  roles: { type: [], default: [], set: function(val) {
+      return _.uniq(val);
+    }
+  }
 })
 
 // Set addRoles function
