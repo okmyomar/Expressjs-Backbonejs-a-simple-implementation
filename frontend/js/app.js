@@ -1,15 +1,3 @@
-var UsersView = Backbone.Marionette.CompositeView.extend({
-  template: function(serializedData) {
-    return Handlebars.templates['usersTable.hbs'](serializedData);
-  },
-
-  childView: UserView,
-  childViewContainer: 'tbody',
-  tagName: 'table',
-  className: 'table table-striped'
-});
-
-
 usersApp = new Backbone.Marionette.Application({
   regions: {
     mainRegion: '#main-container'

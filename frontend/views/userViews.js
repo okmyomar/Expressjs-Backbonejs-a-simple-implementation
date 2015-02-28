@@ -29,7 +29,6 @@ var UserEditor = Backbone.Marionette.ItemView.extend({
   }
 });
 
-
 var UserView = Backbone.Marionette.ItemView.extend({
   template: function(serializedData) {
     return Handlebars.templates['user.hbs'](serializedData);
@@ -39,4 +38,15 @@ var UserView = Backbone.Marionette.ItemView.extend({
   triggers: {
     click: 'edit:user'
   }
+});
+
+var UsersView = Backbone.Marionette.CompositeView.extend({
+  template: function(serializedData) {
+    return Handlebars.templates['usersTable.hbs'](serializedData);
+  },
+
+  childView: UserView,
+  childViewContainer: 'tbody',
+  tagName: 'table',
+  className: 'table table-striped'
 });
