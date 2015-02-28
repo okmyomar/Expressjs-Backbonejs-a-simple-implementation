@@ -1,10 +1,10 @@
 require.config({
   paths: {
-    jquery: '/jquery/dist/jquery',
-    underscore: '/underscore/underscore',
-    backbone: '/backbone/backbone',
-    marionette: '/backbone.marionette/lib/backbone.marionette',
-    hbs: '/require-handlebars-plugin/hbs'
+    jquery: '/node_modules/jquery/dist/jquery',
+    underscore: '/node_modules/underscore/underscore',
+    backbone: '/node_modules/backbone/backbone',
+    marionette: '/node_modules/backbone.marionette/lib/backbone.marionette',
+    hbs: '/bower_components/require-handlebars-plugin/hbs'
   },
   hbs: {
     helpers: true,

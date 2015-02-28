@@ -1,4 +1,4 @@
-define(['marionette', 'hbs!/user', 'hbs!/usersTable'], function(Marionette, UserTmpl, UsersTableTmpl) {
+ define(['marionette', 'hbs!/templates/user', 'hbs!/templates/usersTable'], function(Marionette, UserTmpl, UsersTableTmpl) {
   'use strict';
 
   var UserView = Marionette.ItemView.extend({

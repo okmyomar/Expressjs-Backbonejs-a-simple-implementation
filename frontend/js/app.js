@@ -1,8 +1,8 @@
 define([
     'marionette',
-    '/userCollection.js',
-    '/userEditor.js',
-    '/usersView.js'
+    '/collections/userCollection.js',
+    '/views/userEditor.js',
+    '/views/usersView.js'
   ],
 
   function(

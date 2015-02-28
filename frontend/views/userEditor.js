@@ -1,4 +1,4 @@
-define(['marionette', 'hbs!/userEditor'], function(Marionette, UserEditorTmpl) {
+define(['marionette', 'hbs!/templates/userEditor'], function(Marionette, UserEditorTmpl) {
   'use strict';
 
   var UserEditor = Marionette.ItemView.extend({
