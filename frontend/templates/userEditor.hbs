@@ -3,13 +3,13 @@
     <h4>Edit user</h4>
     <input type="text" id="userName" class="form-control input-sm chat-input" value="{{username}}" readonly/>
     </br>
-    <input type="password" id="password" class="form-control input-sm chat-input" value="Its a secret" readonly/>
+    <input type="password" id="password" class="form-control input-sm" value="Its a secret" readonly/>
     </br>
     <div>
         Add the necessary roles<button id="addRoleBtn" type="button" class="btn btn-sm btn-primary"><i>+</i></button>
         <ul id="role-list" class="list-unstyled">
             {{#each roles}}
-                <li><input type="text" value="{{this}}"></li>
+                <li><input type="text" value="{{this}}" class="form-control input-sm chat-input" readonly></li>
             {{/each}}
         </ul>
     </div>
