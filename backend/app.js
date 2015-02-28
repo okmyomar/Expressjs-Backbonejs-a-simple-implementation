@@ -18,6 +18,8 @@ app.use(express.static('../frontend/js'));
 app.use(express.static('../frontend/models'));
 app.use(express.static('../frontend/collections'));
 app.use(express.static('../frontend/views'));
+app.use(express.static('../frontend/node_modules'));
+app.use(express.static('../frontend/bower_components'));
 app.use(express.static('../frontend/templates'));
 app.use(express.static('views'));
 
