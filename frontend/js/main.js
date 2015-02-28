@@ -3,7 +3,14 @@ require.config({
     jquery: '/jquery/dist/jquery',
     underscore: '/underscore/underscore',
     backbone: '/backbone/backbone',
-    marionette: '/backbone.marionette/lib/backbone.marionette'
+    marionette: '/backbone.marionette/lib/backbone.marionette',
+    hbs: '/require-handlebars-plugin/hbs'
+  },
+  hbs: {
+    helpers: true,
+    i18n: false,
+    templateExtension: 'hbs',
+    partialsUrl: ''
   },
   shim: {
     'underscore': { exports: '_'},
@@ -26,5 +33,4 @@ require([
   ],
 
   function(jquery, _, Backbone, Marionette, App) {
-    console.log('hi there');
 })

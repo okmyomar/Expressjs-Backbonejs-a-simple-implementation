@@ -1,4 +1,4 @@
-define(['marionette'], function(Marionette) {
+define(['marionette', 'hbs!/userEditor'], function(Marionette, UserEditorTmpl) {
   'use strict';
 
   var UserEditor = Marionette.ItemView.extend({
@@ -9,7 +9,7 @@ define(['marionette'], function(Marionette) {
     },
 
     template: function(serializedData) {
-      return Handlebars.templates['userEditor.hbs'](serializedData);
+      return UserEditorTmpl(serializedData);
     },
 
     addRoleInput: function() {

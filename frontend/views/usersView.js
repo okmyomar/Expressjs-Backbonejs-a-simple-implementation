@@ -1,9 +1,10 @@
-define(['marionette'], function(Marionette) {
+define(['marionette', 'hbs!/user', 'hbs!/usersTable'], function(Marionette, UserTmpl, UsersTableTmpl) {
   'use strict';
 
   var UserView = Marionette.ItemView.extend({
     template: function(serializedData) {
-      return Handlebars.templates['user.hbs'](serializedData);
+      //return Handlebars.templates['user.hbs'](serializedData);
+      return UserTmpl(serializedData);
     },
 
     tagName: 'tr',
@@ -14,7 +15,8 @@ define(['marionette'], function(Marionette) {
 
   var UsersView = Marionette.CompositeView.extend({
     template: function(serializedData) {
-      return Handlebars.templates['usersTable.hbs'](serializedData);
+      //return Handlebars.templates['usersTable.hbs'](serializedData);
+      return UsersTableTmpl(serializedData);
     },
 
     childView: UserView,
