@@ -4,7 +4,7 @@
   "description": "JS Developer test",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 6000 --reporter spec"
+    "test": "mocha --reporter spec"
   },
   "keywords": [
     "serverbone"
