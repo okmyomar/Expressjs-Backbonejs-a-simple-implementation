@@ -4,17 +4,14 @@
   "description": "frontend",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter list"
+    "test": "mocha --reporter spec"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chai": "~1.9.1",
+    "chai": "^2.1.0",
     "karma": "^0.12.31",
-    "karma-cli": "0.0.4",
-    "karma-mocha": "^0.1.10",
-    "mocha": "~1.18",
-    "sinon": "~1.9.1"
+    "mocha": "^2.1.0"
   },
   "dependencies": {
     "backbone": "^1.1.2",
