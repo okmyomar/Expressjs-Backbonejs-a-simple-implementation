@@ -1,6 +1,6 @@
-This is just a little example about using Expressjs with backbone + Marionette
+# This is just a little example about using Expressjs with backbone + Marionette
 
-In the projecto you will to find examples about the use of:
+In the project you will to find examples about the use of:
  - Backbonejs
  - Marionettejs
  - Expressjs
@@ -9,11 +9,11 @@ In the projecto you will to find examples about the use of:
  - Requirejs
  - Mocha testing
 
-1.- Database
+## 1.- Database
 ==================
     Install mongodb and start daemon
 
-2.- Backend
+## 2.- Backend
 ==================
 
 ## setup
@@ -31,7 +31,7 @@ In the projecto you will to find examples about the use of:
 
 
 
-2.- Frontend
+## 3.- Frontend
 ==================
 ## setup
 
